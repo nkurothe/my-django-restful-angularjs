@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="asana">
+    <head>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"></link>
+	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="dev/js/scripts.js"></script>
+    </head>
+    <body>
+	<div class="form-group">
+	    <div ng-controller="TaskController as taskc">
+	        <div class="list-group">
+      	            <div class="list-group-item" ng-repeat="task in taskc.tasks">
+			<input type="hidden" ng-model="task.pk" value={{task.pk}}></input>
+                    	<h3>Title: {{task.title}}</h3>
+	        	<p>Task Descirption: {{task.desc}}</p>
+			<p>Assignee: {{task.assignee}}</p>
+			<p>Assigned To: {{task.assigned_to}}</p>
+			<p>Due Date: {{task.due_date}}</p>
+			<p>
+			    <a class="btn btn-default" data-toggle="modal" ng-href='#{{task.pk}}'>Update</a>
+				<form name="TaskDeleteForm" ng-controller="DeleteTask as deltask" ng-submit="deltask.delTask(taskc,task)">
+                           	    <input type="submit" class="btn btn-default" value="Delete"></input>
+				</form>
+			</p>
+			<div class="modal fade" ng-model="task.pk" id="{{task.pk}}">
+			    <div class="modal-dialog">
+			        <form class="form-inline" name="TaskUpdateForm" ng-controller="UpdateTask as updatetask" ng-submit="updatetask.updateTask(taskc,task)">
+			        <div class="list-group-item">
+				    <input type="hidden" ng-model="task.pk" value={{task.pk}}></input>
+				    <fieldset class="form-group">
+					<p>Title: <input type="text" ng-model="task.title" value="{{task.title}}" class="form-control" title="Title"></input></p>
+				    </fieldset>
+				    <br/>
+				    <fieldset class="form-group">
+					<p>Description: <textarea value="{{task.desc}}" rows="4" cols="50" ng-model="task.desc" class="form-control" title="Description"></textarea></p>
+				    </fieldset>
+				    <br/>
+				    <fieldset class="form-group">
+					<p>Assignee: <input type="text" value="{{task.assignee}}" ng-model="task.assignee" class="form-control" title="Assignee"></input></p>
+				    </fieldset>
+				    <br/>
+				    <fieldset class="form-group">
+					<p>Assigned To: <input type="text" value="{{task.assigned_to}}" ng-model="task.assigned_to" class="form-control" title="Assigned To"></input></p>
+				    </fieldset>
+				    <br/>
+				    <fieldset class="form-group">
+					<p>Due Date: <input type="text" value={{task.due_date}} ng-model="task.due_date" class="form-control" title="Due Date"></input></p>
+				    </fieldset>
+				    <br/>
+				    <fieldset class="form-group">
+					<p>
+					    <input type="submit" class="btn btn-default pull-right" value="Update"></input>
+					    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+					</p>
+				    </fieldset>
+				</div>
+			        </form>
+			   </div>
+			</div>
+		    </div>
+	    	</div> 
+	    <form class="form-inline" name="TaskForm" ng-controller="CreateTask as newtask" ng-submit="newtask.addTask(taskc)">
+	    	<div class="list-group-item">
+		    <input type="hidden" ng-model="newtask.task.pk" value={{task.pk}}></input>
+		    <fieldset class="form-group">
+	    	        <p>Title: <input type="text" placeholder="Title" ng-model="newtask.task.title" class="form-control" title="Title"></input></p>
+		    </fieldset>
+		    <br/>
+		    <fieldset class="form-group">
+		    	<p>Description: <textarea rows="4" cols="50" ng-model="newtask.task.desc" placeholder="Description about the Task" class="form-control" title="Description"></textarea></p>
+		    </fieldset>
+		    <br/>
+  		    <fieldset class="form-group">
+		    	<p>Assignee: <input type="text" ng-model="newtask.task.assignee" class="form-control" title="Assignee"></input></p>
+		    </fieldset>
+		    <br/>
+		    <fieldset class="form-group">
+		    	<p>Assigned To: <input type="text" ng-model="newtask.task.assigned_to" class="form-control" title="Assigned To"></input></p>
+		    </fieldset>
+		    <br/>
+   		    <fieldset class="form-group">
+		    	<p>Due Date: <input type="text" ng-model="newtask.task.due_date" class="form-control" title="Due Date"></input></p>
+		    </fieldset>
+		    <br/>	
+		    <fieldset class="form-group">
+	    	    	<p><input type="submit" class="btn btn-default pull-right" value="New Task"></input></p>
+		    </fieldset>
+		</div>
+	    </form> 
+	    </div>
+	</div>
+    </body>
+</html>

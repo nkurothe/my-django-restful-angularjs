@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="asana">
+    <head>
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"></link>
+        <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+        <script type="text/javascript" src="dev/js/scripts.js"></script>
+    </head>
+    <body>
+    	<div class="form-inline">
+	    <form id="login-form" class="text-left" ng-controller="FormLogin as log" ng-submit="">
+		<div class="login-form-main-message"></div>
+		<div class="main-login-form">
+			<div class="login-group">
+				<div class="form-group">
+					<label for="lg_username" class="sr-only">Username</label>
+					<input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username">
+				</div>
+				<div class="form-group">
+					<label for="lg_password" class="sr-only">Password</label>
+					<input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password">
+				</div>
+			</div>
+			<button type="submit" class="btn btn-default">Login</button>
+		</div>
+	    </form>
+	</div>
+    </body>
+</html>
