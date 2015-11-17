@@ -1,6 +1,6 @@
 (function() {
 var app= angular.module('asana',[]);
-
+    console.log('in');
     app.controller('TaskController',['$http',function($http){
 	    var control = this;
 	    control.tasks = [];
